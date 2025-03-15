@@ -1,0 +1,18 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")  // This will use the connection from .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model puppies {
+  pet_id                Int     @id @default(autoincrement()) // Primary key, auto increment
+  name                  String  @db.VarChar(50)            // Name column, 50 chars max
+  breed                 String? @db.VarChar(20)            // Breed column, 20 chars max, nullable
+  age_est               Int?                                  // Estimated age column, nullable
+  current_kennel_number Int?                                  // Current kennel number, nullable
+}
